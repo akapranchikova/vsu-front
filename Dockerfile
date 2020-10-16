@@ -1,7 +1,11 @@
-FROM node:10-alpine as build-step
-RUN mkdir -p /app
-WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
-RUN npm run build --prod
+FROM nginx:alpine
+
+ENV PROXY_PASS=""
+
+COPY configure.sh /
+COPY dist/ui/ www/ui
+COPY config/nginx.conf etc/nginx/nginx.conf
+#COPY docs www/docs
+#COPY media www/media
+#CMD ./configure.sh
+RUN ["chmod", "+x", "./configure.sh"]
