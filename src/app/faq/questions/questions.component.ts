@@ -3,6 +3,7 @@ import {AddNewsModalComponent} from '../../news/add-news-modal/add-news-modal.co
 import {FormMode} from '../../common/misc/helper';
 import {MatDialog} from '@angular/material/dialog';
 import {AddQuestionModalComponent} from '../add-question-modal/add-question-modal.component';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-questions',
@@ -12,9 +13,14 @@ import {AddQuestionModalComponent} from '../add-question-modal/add-question-moda
 export class QuestionsComponent implements OnInit {
 
   FormMode = FormMode;
-  constructor(private dialog: MatDialog) { }
+  setQuestions;
+
+  constructor(private dialog: MatDialog, private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.httpService.get('/vsu/questions').subscribe(res => {
+      this.setQuestions = res;
+    });
   }
 
 

@@ -1,6 +1,6 @@
 {
   "/": {
-    "target": "http://0.0.0.0:8080/",
+    "target": "http://0.0.0.0:8050/",
     "secure": false
   }
 }
