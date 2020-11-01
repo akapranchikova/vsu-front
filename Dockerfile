@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM node:10-alpine as build-step
 ENV PROXY_PASS=""
 CMD ["npm", "install"]
 RUN npm run build --prod
