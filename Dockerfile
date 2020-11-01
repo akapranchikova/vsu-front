@@ -1,5 +1,5 @@
 FROM nginx:alpine
-
+WORKDIR /vsu-front
 ENV PROXY_PASS=""
 CMD ["npm", "install"]
 CMD ["npm", "build"]
