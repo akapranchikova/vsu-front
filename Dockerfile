@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 ENV PROXY_PASS=""
-RUN npm install
+CMD ["npm", "install"]
 CMD ["npm", "build"]
 COPY configure.sh /
 COPY dist/ui/ www/ui
