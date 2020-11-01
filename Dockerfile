@@ -1,5 +1,6 @@
 FROM node:10-alpine as build-step
 ENV PROXY_PASS=""
+WORKDIR .
 CMD ["npm", "install"]
 RUN npm run build --prod
 COPY configure.sh /
