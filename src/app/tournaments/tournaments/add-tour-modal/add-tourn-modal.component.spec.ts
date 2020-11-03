@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSponsorModalComponent } from './add-sponsor-modal.component';
+import { AddTournModalComponent } from './add-tourn-modal.component';
 
 describe('AddSponsorModalComponent', () => {
-  let component: AddSponsorModalComponent;
-  let fixture: ComponentFixture<AddSponsorModalComponent>;
+  let component: AddTournModalComponent;
+  let fixture: ComponentFixture<AddTournModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSponsorModalComponent ]
+      declarations: [ AddTournModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSponsorModalComponent);
+    fixture = TestBed.createComponent(AddTournModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

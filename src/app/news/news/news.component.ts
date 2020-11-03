@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AddSponsorModalComponent} from '../../sponsors/sponsors/add-sponsor-modal/add-sponsor-modal.component';
+import {AddTournModalComponent} from '../../tournaments/tournaments/add-tour-modal/add-tourn-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {FormMode} from '../../common/misc/helper';
 import {AddNewsModalComponent} from '../add-news-modal/add-news-modal.component';
@@ -18,6 +18,10 @@ export class NewsComponent implements OnInit {
               private httpService: HttpService) { }
 
   ngOnInit(): void {
+   this.getNews();
+  }
+
+  getNews() {
     this.httpService.get('/vsu/news/all').subscribe(res => {
       this.setNews = res;
     });
@@ -30,6 +34,16 @@ export class NewsComponent implements OnInit {
         mode,
         element
       }
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.getNews();
+      }
+    });
+  }
+
+  deleteNews(id) {
+    this.httpService.delete('/vsu/news', id).subscribe(res => {
+      this.getNews();
     });
   }
 

@@ -4,8 +4,6 @@ import {SponsorsComponent} from './sponsors/sponsors.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { AddSponsorModalComponent } from './sponsors/add-sponsor-modal/add-sponsor-modal.component';
-import {AddUserModalComponent} from '../users/users/add-user-modal/add-user-modal.component';
 
 
 const routes: Routes = [
@@ -16,16 +14,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SponsorsComponent, AddSponsorModalComponent],
+  declarations: [SponsorsComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     MatIconModule,
     MatTooltipModule
   ],
-  entryComponents: [
-    AddSponsorModalComponent
-  ]
 })
 export class SponsorsModule {
 }

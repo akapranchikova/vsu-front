@@ -7,6 +7,7 @@ import {HeaderComponent} from './header/header.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {MaterialModule} from '../common/material.module';
 import {MainComponent} from './main/main.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MainComponent,
+        redirectTo: 'news',
+        pathMatch: 'full'
       },
       {
         path: 'news',
@@ -54,7 +56,8 @@ const routes: Routes = [
   imports: [
     [RouterModule.forChild(routes)],
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     SignInComponent

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-rating',
@@ -7,26 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RatingComponent implements OnInit {
 
-  dataSource = [
-    {
-      login: 'user',
-      faculty: 'AMM',
-      user: 'User 1',
-      rating: 1200
-    },
-    {
-      login: 'user',
-      faculty: 'AMM',
-      user: 'User 1',
-      rating: 1200
-    },
-  ];
+  dataSource;
   displayedColumns = ['login', 'faculty', 'user', 'rating'];
 
-  constructor() {
+  constructor(private httpService: HttpService) {
   }
 
   ngOnInit(): void {
+    this.httpService.get('/vsu/rating/all').subscribe(res => this.dataSource = res);
   }
 
 }

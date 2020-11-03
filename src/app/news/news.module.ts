@@ -6,6 +6,7 @@ import {MaterialModule} from '../common/material.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AddNewsModalComponent } from './add-news-modal/add-news-modal.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -16,12 +17,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [NewsComponent, AddNewsModalComponent],
-  imports: [
-    [RouterModule.forChild(routes)],
-    CommonModule,
-    MatIconModule,
-    MatTooltipModule,
-  ],
+    imports: [
+        [RouterModule.forChild(routes)],
+        CommonModule,
+        MatIconModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+    ],
   entryComponents: [
     AddNewsModalComponent
   ]

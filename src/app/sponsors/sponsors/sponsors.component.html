@@ -6,37 +6,16 @@
     </mat-icon>
   </div>
   <div class="sponsors-set">
-    <article class="sponsor">
+    <article class="sponsor" *ngFor="let sponsor of setSponsors">
       <div class="sponsor__settings">
         <mat-icon class="news__edit icon-clicked" (click)="openAddSponsorModal(FormMode.EDIT)">edit</mat-icon>
         <mat-icon class="news__delete icon-clicked">delete</mat-icon>
       </div>
       <header>
         <img class="sponsor__logo" src="assets/images/DA.png" alt="лого">
-        <div class="sponsor__title">Название</div>
+        <div class="sponsor__title">{{sponsor.firsName}}</div>
       </header>
-      <p class="sponsor__info">хорошее описание спонсора</p>
-    </article>
-    <article class="sponsor">
-      <header>
-        <img class="sponsor__logo" src="" alt="лого">
-        <div class="sponsor__title">Название</div>
-      </header>
-      <p class="sponsor__info">хорошее описание спонсора</p>
-    </article>
-    <article class="sponsor">
-      <header>
-        <img class="sponsor__logo" src="" alt="лого">
-        <div class="sponsor__title">Название</div>
-      </header>
-      <p class="sponsor__info">хорошее описание спонсора</p>
-    </article>
-    <article class="sponsor">
-      <header>
-        <img class="sponsor__logo" src="" alt="лого">
-        <div class="sponsor__title">Название</div>
-      </header>
-      <p class="sponsor__info">хорошее описание спонсора</p>
+      <p class="sponsor__info">{{sponsor.description}}</p>
     </article>
     <article class="sponsor">
       <header>

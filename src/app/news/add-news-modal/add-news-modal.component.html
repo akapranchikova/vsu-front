@@ -1,4 +1,4 @@
-<section class="section-modal">
+<section class="section-modal" [formGroup]="form">
   <h2 class="section-modal__title" *ngIf="data.mode === FormMode.ADD">Добавить новость</h2>
   <h2 class="section-modal__title" *ngIf="data.mode === FormMode.EDIT">Редактировать новость</h2>
   <div class="section-modal__close" (click)="dialogRef.close()">
@@ -7,14 +7,14 @@
   <label class="label-input-custom" for="name">
     Название новости
   </label>
-  <input placeholder="Спонсор" id="name" type="text" class="input-custom section-modal__input">
+  <input placeholder="Название" formControlName="title" id="name" type="text" class="input-custom section-modal__input">
 
   <label class="label-input-custom" for="login">
     Описание
   </label>
-  <textarea placeholder="Описание" id="login" class="input-custom section-modal__textarea"></textarea>
+  <textarea placeholder="Описание" id="login" formControlName="description" class="input-custom section-modal__textarea"></textarea>
   <div class="section-modal__wrap-button">
-    <button class="button-custom button-custom_blue">Сохранить</button>
+    <button class="button-custom button-custom_blue" (click)="save()">Сохранить</button>
     <button class="button-custom button-custom_gray" (click)="dialogRef.close()">Отмена</button>
   </div>
 </section>

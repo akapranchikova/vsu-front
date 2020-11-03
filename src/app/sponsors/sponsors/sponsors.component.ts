@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {AddSponsorModalComponent} from './add-sponsor-modal/add-sponsor-modal.component';
+import {AddTournModalComponent} from '../../tournaments/tournaments/add-tour-modal/add-tourn-modal.component';
 import {FormMode} from '../../common/misc/helper';
 import {HttpService} from '../../services/http.service';
 
@@ -23,7 +23,7 @@ export class SponsorsComponent implements OnInit {
   }
 
   openAddSponsorModal(mode: FormMode, element?) {
-    this.dialog.open(AddSponsorModalComponent, {
+    this.dialog.open(AddTournModalComponent, {
       width: '400px',
       data: {
         mode,
