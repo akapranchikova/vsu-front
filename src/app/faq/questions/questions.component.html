@@ -8,8 +8,8 @@
     <article class="question" *ngFor="let f of setQuestions">
       <header class="question__header">
         <h3 class="question__title">
-          {{f.title}}
-          <span class="question__date">Aug 6</span>
+          {{f.description}}
+          <span class="question__date">{{f.dateCreated | date: "MMM dd"}}</span>
         </h3>
 
         <div class="actions">
@@ -17,7 +17,8 @@
           <mat-icon class="news__delete icon-clicked">delete</mat-icon>
         </div>
       </header>
-      <p class="question__info">Weaker carriers have fallen by the wayside amid fierce competition, while others have been hit by bad luck. The result: thousands of canceled flights.</p>
+      <p class="question__info">
+        {{f.answer}}</p>
     </article>
 
   </div>

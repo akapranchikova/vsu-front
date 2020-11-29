@@ -22,6 +22,8 @@ export class AddQuestionModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.mode === FormMode.ADD) {
       this.form = this.fb.group({
+        description: '',
+        userId: 1
       });
     } else {
       this.form = this.fb.group({...this.data.element});

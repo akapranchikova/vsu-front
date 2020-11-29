@@ -5,6 +5,7 @@ import {Router, RouterModule, Routes} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import { AddQuestionModalComponent } from './add-question-modal/add-question-modal.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -15,12 +16,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [QuestionsComponent, AddQuestionModalComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatTooltipModule,
-    MatIconModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatTooltipModule,
+        MatIconModule,
+        ReactiveFormsModule
+    ],
   entryComponents: [
     AddQuestionModalComponent
   ],
