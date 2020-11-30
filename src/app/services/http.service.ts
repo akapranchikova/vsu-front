@@ -17,7 +17,7 @@ enum HTTP_METHOD {
 export class HttpService {
 
   // tslint:disable-next-line:variable-name
-  private _apiUrl: string = '';
+  private _apiUrl: string = environment.httpApiUrl;
 
   public tokenReceived$ = new ReplaySubject(1);
 

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {of, Subject} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -54,13 +55,13 @@ export class AuthService {
   }
 
   getUser() {
-    this.http.get('/vsu/user').pipe(map(res => {
+    this.http.get(environment.httpApiUrl + '/vsu/user').pipe(map(res => {
       this.saveUser(res);
     })).subscribe();
   }
 
   signIn(data) {
-    return this.http.post('/vsu/sign-in', data).pipe(map(res => {
+    return this.http.post(environment.httpApiUrl + '/vsu/sign-in', data).pipe(map(res => {
       // @ts-ignore
       this.saveToken(res.token);
       this.getUser();
