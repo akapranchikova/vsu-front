@@ -6,17 +6,17 @@
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8 section-rating__table table-rating table-custom">
     <ng-container matColumnDef="login">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef> Username </mat-header-cell>
-      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.login}} </mat-cell>
+      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.username}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="faculty">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef> Факультет </mat-header-cell>
-      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.faculty}} </mat-cell>
+      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.department.name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="user">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef> Пользователь </mat-header-cell>
-      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.user}} </mat-cell>
+      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.firstName}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="rating">

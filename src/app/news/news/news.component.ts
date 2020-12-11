@@ -42,7 +42,7 @@ export class NewsComponent implements OnInit {
   }
 
   deleteNews(id) {
-    this.httpService.delete('/vsu/news', id).subscribe(res => {
+    this.httpService.delete('/vsu/news', {id}).subscribe(res => {
       this.getNews();
     });
   }

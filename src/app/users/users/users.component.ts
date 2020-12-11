@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {AddUserModalComponent} from './add-user-modal/add-user-modal.component';
 import {FormMode} from '../../common/misc/helper';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-users',
@@ -10,26 +11,16 @@ import {FormMode} from '../../common/misc/helper';
 })
 export class UsersComponent implements OnInit {
 
-  dataSource = [
-    {
-      login: 'user',
-      faculty: 'AMM',
-      user: 'User 1',
-      rating: 1200
-    },
-    {
-      login: 'user',
-      faculty: 'AMM',
-      user: 'User 1',
-      rating: 1200
-    },
-  ];
+  dataSource;
   displayedColumns = ['login', 'faculty', 'user', 'rating', 'actions'];
   FormMode = FormMode;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.httpService.get('/vsu/users').subscribe(res => {
+      this.dataSource = res;
+    });
   }
 
   openUserModal(mode: FormMode, element?) {

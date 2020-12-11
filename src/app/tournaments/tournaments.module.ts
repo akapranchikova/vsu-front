@@ -5,6 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {AddTournModalComponent} from './tournaments/add-tour-modal/add-tourn-modal.component';
+import {MatTableModule} from '@angular/material/table';
 
 const routes: Routes = [
   {
@@ -15,12 +16,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [TournamentsComponent, AddTournModalComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatTableModule
+    ],
   entryComponents: [
     AddTournModalComponent
   ]

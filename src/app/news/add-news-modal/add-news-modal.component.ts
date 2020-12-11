@@ -25,7 +25,6 @@ export class AddNewsModalComponent implements OnInit {
       this.form = this.fb.group({
         title: '',
         description: '',
-        userId: 1
       });
     }
   }

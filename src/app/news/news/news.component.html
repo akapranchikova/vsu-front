@@ -12,7 +12,7 @@
         </h3>
         <div class="actions">
           <mat-icon class="news__edit icon-clicked" (click)="openAddNewsModal(FormMode.EDIT, news)">edit</mat-icon>
-          <mat-icon class="news__delete icon-clicked">delete</mat-icon>
+          <mat-icon class="news__delete icon-clicked" (click)="deleteNews(news.id)">delete</mat-icon>
         </div>
 
       </header>
