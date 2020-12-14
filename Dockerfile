@@ -13,7 +13,8 @@
 FROM nginx:alpine
 
 ENV PROXY_PASS=""
-
+RUN npm install
+RUN npm run build
 COPY configure.sh /
 COPY dist/ui/ www/ui
 COPY config/nginx.conf etc/nginx/nginx.conf
