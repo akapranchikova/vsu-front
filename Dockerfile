@@ -15,7 +15,7 @@ FROM nginx:alpine
 ENV PROXY_PASS=""
 
 COPY configure.sh /
-COPY dist/admin/ www/ui
+COPY dist/ui/ www/ui
 COPY config/nginx.conf etc/nginx/nginx.conf
 COPY docs www/docs
 COPY media www/media
