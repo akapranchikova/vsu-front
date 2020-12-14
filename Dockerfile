@@ -6,6 +6,7 @@ RUN npm install
 RUN npm run build
 
 FROM nginx:alpine
+COPY /config/nginx.conf /etc/nginx/
 COPY --from=build-step /vsu-front/dist/ui /usr/share/nginx/html
 
 #CMD ["npm", "install"]
