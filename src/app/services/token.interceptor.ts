@@ -33,8 +33,9 @@ export class TokenInterceptor implements HttpInterceptor {
       HttpResponse<any> |
       HttpUserEvent<any> |
       any> {
-
-    return next.handle(this.addAccessTokenToRequest(request))
+    const headers = request.headers.append('Access-Control-Allow-Origin', '*');
+    const request2 = request.clone({ headers: headers });
+    return next.handle(this.addAccessTokenToRequest(request2))
       .pipe(
         retry(0),
         tap((event) => {
