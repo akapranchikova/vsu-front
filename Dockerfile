@@ -51,7 +51,8 @@ FROM node:10
 
 WORKDIR /usr/src/app/app-ui
 
-COPY package*.json ./
+#COPY package*.json ./
+COPY * ./
 
 RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
 
