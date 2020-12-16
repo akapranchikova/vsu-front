@@ -1,13 +1,15 @@
-FROM node:10-alpine as build-step
-ENV PROXY_PASS=""
-WORKDIR /vsu-front
-COPY . .
-RUN npm install
-RUN npm run build
+#FROM node:10-alpine as build-step
+#ENV PROXY_PASS=""
+#WORKDIR /vsu-front
+#COPY . .
+#RUN npm install
+#RUN npm run build
+#
+#FROM nginx:alpine
+#COPY /config/nginx.conf /etc/nginx/
+#COPY --from=build-step /vsu-front/dist/ui /usr/share/nginx/html
 
-FROM nginx:alpine
-COPY /config/nginx.conf /etc/nginx/
-COPY --from=build-step /vsu-front/dist/ui /usr/share/nginx/html
+
 
 
 
@@ -45,7 +47,17 @@ COPY --from=build-step /vsu-front/dist/ui /usr/share/nginx/html
 #COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
 
 
+FROM node:10
 
+WORKDIR /usr/src/app/app-ui
+
+COPY package*.json ./
+
+RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+
+EXPOSE 4201
+
+CMD ["npm", "start"]
 
 
 #CMD ["npm", "install"]
