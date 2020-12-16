@@ -34,31 +34,31 @@
 
 
 
-### STAGE 1: Build ###
-#FROM node:12.7-alpine AS build
-#WORKDIR /usr/src/app
-#COPY package.json package-lock.json ./
-#RUN npm install
-#COPY . .
-#RUN npm run build
-#### STAGE 2: Run ###
-#FROM nginx:1.17.1-alpine
-#COPY config/nginx.conf /etc/nginx/nginx.conf
-#COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
+## STAGE 1: Build ###
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
 
 
-FROM node:10
-
-WORKDIR /usr/src/app/app-ui
-
-#COPY package*.json ./
-COPY * ./
-
-RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
-
-EXPOSE 4201
-
-CMD ["npm", "start"]
+#FROM node:10
+#
+#WORKDIR /usr/src/app/app-ui
+#
+##COPY package*.json ./
+#COPY * ./
+#
+#RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+#
+#EXPOSE 4201
+#
+#CMD ["npm", "start"]
 
 
 #CMD ["npm", "install"]
