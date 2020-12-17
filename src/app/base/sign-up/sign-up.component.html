@@ -4,10 +4,28 @@
     <mat-icon class="icon">close</mat-icon>
   </div>
 
+  <div class="faculty">
+    <label class="label-input-custom">
+      Факультет
+    </label>
+    <app-select class="select" formControlName="departmentId" [items]="departments" valueField="id" labelField="name"></app-select>
+  </div>
+
+  <label class="label-input-custom" for="firstName">
+    Имя
+  </label>
+  <input placeholder="Имя" id="firstName" required type="text" class="input-custom section-modal__input" formControlName="firstName">
+
+  <label class="label-input-custom" for="secondName">
+    Фамилия
+  </label>
+  <input placeholder="Фамилия" id="secondName" required type="text" class="input-custom section-modal__input" formControlName="secondName">
+
   <label class="label-input-custom" for="login">
     Логин
   </label>
   <input placeholder="Логин" id="login" required type="text" class="input-custom section-modal__input" formControlName="username">
+
 
   <label class="label-input-custom" for="password">
     Пароль

@@ -60,6 +60,13 @@ export class AuthService {
     })).subscribe();
   }
 
+  updateUserInfo() {
+    return this.http.get( '/vsu/user').pipe(map(res => {
+      this.saveUser(res);
+      return res;
+    }));
+  }
+
   signIn(data) {
     return this.http.post('/vsu/sign-in', data).pipe(map(res => {
       // @ts-ignore

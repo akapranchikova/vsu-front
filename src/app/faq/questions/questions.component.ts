@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AddNewsModalComponent} from '../../news/add-news-modal/add-news-modal.component';
 import {FormMode} from '../../common/misc/helper';
 import {MatDialog} from '@angular/material/dialog';
@@ -15,14 +15,18 @@ export class QuestionsComponent implements OnInit {
   FormMode = FormMode;
   setQuestions;
 
-  constructor(private dialog: MatDialog, private httpService: HttpService) { }
+  constructor(private dialog: MatDialog, private httpService: HttpService) {
+  }
 
   ngOnInit(): void {
+    this.loadQuestions();
+  }
+
+  loadQuestions() {
     this.httpService.get('/vsu/questions').subscribe(res => {
       this.setQuestions = res;
     });
   }
-
 
   openAddQuestionModal(mode: FormMode, element?) {
     this.dialog.open(AddQuestionModalComponent, {
@@ -30,6 +34,10 @@ export class QuestionsComponent implements OnInit {
       data: {
         mode,
         element
+      }
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.loadQuestions();
       }
     });
   }

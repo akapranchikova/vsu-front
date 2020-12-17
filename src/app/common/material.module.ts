@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {SelectComponent} from './select/select.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {CommonModule} from '@angular/common';
 
 const materialModules = [
   MatDialogModule,
@@ -8,11 +11,14 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [SelectComponent],
   imports: [
     ...materialModules,
+    MatTooltipModule,
+    CommonModule,
   ], exports: [
-    ...materialModules
+    ...materialModules,
+    SelectComponent
   ]
 })
 export class MaterialModule { }

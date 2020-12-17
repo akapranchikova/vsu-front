@@ -1,11 +1,13 @@
-<section class="section-profile">
+<section class="section-profile" [formGroup]="form">
   <h2 class="section-profile__title">Профиль</h2>
   <div class="profile-card">
     <img class="profile-card__image" src="/assets/images/noImage.png" alt="">
     <div class="profile-card__info">
       <div class="profile-card__name">{{user.firstName}} {{user.secondName}}</div>
-      <div class="profile-card__about">{{user.description}}</div>
-      <button class="profile-card__edit-button button-custom button-custom_blue">Редактировать</button>
+      <div class="profile-card__about" *ngIf="!isUpdate">{{user.description}}</div>
+      <textarea class="profile-card__about input-custom section-modal__textarea" *ngIf="isUpdate" formControlName="description"></textarea>
+      <button class="profile-card__edit-button button-custom button-custom_blue" *ngIf="!isUpdate" (click)="goToUpdate()">Редактировать</button>
+      <button class="profile-card__edit-button button-custom button-custom_blue" *ngIf="isUpdate" (click)="save()">Сохранить</button>
     </div>
   </div>
 </section>
