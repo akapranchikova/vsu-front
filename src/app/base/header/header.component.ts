@@ -10,6 +10,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   user;
+  isAdmin: boolean;
 
   constructor(private modalDialog: MatDialog, private authService: AuthService) {
   }
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserObservable().subscribe(res => {
       this.user = res;
+      this.isAdmin = this.authService.isAdmin;
     });
   }
 

@@ -7,13 +7,13 @@
       <a class="header_main-menu__link" routerLink="/sponsors" routerLinkActive="active">Спонсоры</a>
       <a class="header_main-menu__link" routerLink="/rating" routerLinkActive="active">Рейтинг</a>
       <a class="header_main-menu__link" routerLink="/questions" routerLinkActive="active">FAQ</a>
-      <a class="header_main-menu__link" routerLink="/users" routerLinkActive="active">Пользователи</a>
-      <a class="header_main-menu__link" routerLink="/departments" routerLinkActive="active">Факультеты</a>
+      <a class="header_main-menu__link" *ngIf="isAdmin" routerLink="/users" routerLinkActive="active">Пользователи</a>
+      <a class="header_main-menu__link" *ngIf="isAdmin" routerLink="/departments" routerLinkActive="active">Факультеты</a>
     </nav>
     <div class="user-info" *ngIf="user">
       <div class="user" routerLink="/profile">
         <mat-icon class="icon">person</mat-icon>
-        <span>{{user.firstName}}</span>
+        <span>{{user.firstName}} {{user.role}}</span>
       </div>
       <div class="user" (click)="logout()">
         <span>Выйти</span>

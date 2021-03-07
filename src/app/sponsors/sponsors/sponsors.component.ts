@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddTournModalComponent} from '../../tournaments/tournaments/add-tour-modal/add-tourn-modal.component';
 import {FormMode} from '../../common/misc/helper';
 import {HttpService} from '../../services/http.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sponsors',
@@ -13,10 +14,15 @@ export class SponsorsComponent implements OnInit {
 
   FormMode = FormMode;
   setSponsors;
-  constructor(private dialog: MatDialog, private httpService: HttpService) {
+  isAdmin: boolean;
+
+  constructor(private dialog: MatDialog,
+              private authService: AuthService,
+              private httpService: HttpService) {
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin;
     this.httpService.get('/vsu/users', {role: 'SPONSOR'}).subscribe(res => {
       this.setSponsors = res;
     });

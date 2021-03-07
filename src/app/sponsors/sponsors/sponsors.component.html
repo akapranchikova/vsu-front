@@ -1,15 +1,15 @@
 <section class="sponsors-section">
   <div class="sponsors-section__header">
     <h2 class="sponsors-section__title">Спонсоры</h2>
-    <mat-icon class="sponsors-section__icon-add icon-clicked" matTooltip="Добавить"
+    <mat-icon class="sponsors-section__icon-add icon-clicked" *ngIf="isAdmin" matTooltip="Добавить"
               (click)="openAddSponsorModal(FormMode.ADD)">add
     </mat-icon>
   </div>
   <div class="sponsors-set">
     <article class="sponsor" *ngFor="let sponsor of setSponsors">
       <div class="sponsor__settings">
-        <mat-icon class="news__edit icon-clicked" (click)="openAddSponsorModal(FormMode.EDIT)">edit</mat-icon>
-        <mat-icon class="news__delete icon-clicked">delete</mat-icon>
+        <mat-icon class="news__edit icon-clicked" *ngIf="isAdmin" (click)="openAddSponsorModal(FormMode.EDIT)">edit</mat-icon>
+        <mat-icon class="news__delete icon-clicked" *ngIf="isAdmin" >delete</mat-icon>
       </div>
       <header>
         <img class="sponsor__logo" src="assets/images/DA.png" alt="лого">

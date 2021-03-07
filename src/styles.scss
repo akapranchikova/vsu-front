@@ -2,6 +2,7 @@
 @import "assets/styles/fonts.scss";
 @import "assets/styles/common.scss";
 @import "assets/styles/vars.scss";
+
 @include mat-core();
 @include angular-material-theme(mat-light-theme($mat-grey, $mat-grey, $mat-grey));
 
@@ -42,13 +43,16 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+
   li {
     padding: 10px;
     color: #676767;
+
     &:hover {
       background: #E8F6FE;
     }
   }
+
   .select__input {
     color: #323232;
     border: 1px solid #E4E4E4;
@@ -72,18 +76,36 @@ ul {
       border: 2px solid #1693D9;
       padding: 9px;
     }
+
     &:disabled {
       background: rgba(0, 0, 0, 0.1);
+
       &:hover {
         border: 1px solid #E4E4E4;
 
       }
     }
   }
+
   .select__item-block {
     color: rgba(0, 0, 0, .2);
+
     &:hover {
       background: none;
     }
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.datepicker {
+  position: relative;
+
+  mat-datepicker-toggle {
+    position: absolute;
+    right: 10px;
+    top: 0;
   }
 }

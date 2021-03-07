@@ -1,24 +1,83 @@
-<section class="section-modal">
-  <h2 class="section-modal__title" *ngIf="data.mode === FormMode.ADD">Добавить спонсора</h2>
-  <h2 class="section-modal__title" *ngIf="data.mode === FormMode.EDIT">Редактировать спонсора</h2>
+<section class="section-modal" [formGroup]="form">
+  <h2 class="section-modal__title" *ngIf="data.mode === FormMode.ADD">Добавить турнир</h2>
+  <h2 class="section-modal__title" *ngIf="data.mode === FormMode.EDIT">Редактировать турнир</h2>
   <div class="section-modal__close" (click)="dialogRef.close()">
     <mat-icon class="icon">close</mat-icon>
   </div>
-  <label class="label-input-custom" for="name">
-    Спонсор
-  </label>
-  <input placeholder="Турнир" id="name" type="text" class="input-custom section-modal__input">
+  <div>
+    <div class="wrap-name">
+      <div>
+        <label class="label-input-custom" for="name">
+          Название
+        </label>
+        <input placeholder="Название" id="name" formControlName="name" type="text"
+               class="input-custom section-modal__input">
+      </div>
+      <div class="select">
+        <label class="label-input-custom" for="name">
+          Язык программирования
+        </label>
+        <app-select formControlName="label" [items]="tourLabels"></app-select>
+      </div>
+    </div>
 
-  <label class="label-input-custom" for="login">
-    Описание
-  </label>
-  <textarea placeholder="Описание" id="login" class="input-custom section-modal__input"></textarea>
-  <label class="label-input-custom" for="password">
-    Картинка
-  </label>
-  <input placeholder="Картинка" id="password" type="file" class="section-modal__input file-loader-custom">
+
+    <label class="label-input-custom" for="login">
+      Задание
+    </label>
+    <textarea placeholder="Задание" formControlName="task" id="login"
+              class="input-custom section-modal__input"></textarea>
+
+    <div class="wrap-name">
+      <div>
+        <label class="label-input-custom">Начало турнира</label>
+        <div class="datepicker">
+          <input [matDatepicker]="picker1" (click)="picker1.open()" class="input-custom" formControlName="startDate"/>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </div>
+      </div>
+      <div>
+        <label class="label-input-custom">Конец турнира</label>
+        <div class="datepicker">
+          <input [matDatepicker]="picker" class="input-custom" formControlName="endDate"/>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div formGroupName="prize" class="wrap-name prize">
+
+    <div>
+      <label class="label-input-custom">
+        Название приза
+      </label>
+      <input placeholder="Название" formControlName="name" type="text"
+             class="input-custom section-modal__input">
+    </div>
+
+    <div *ngIf="isAdmin" [formGroup]="form">
+      <label class="label-input-custom">Спонсор</label>
+      <app-select formControlName="sponsorId" labelField="firstName" valueField="id" [items]="setSponsors"></app-select>
+    </div>
+
+
+  </div>
+  <div  formGroupName="prize">
+    <label class="label-input-custom">
+      Описание приза
+
+    </label>
+    <textarea placeholder="Описание" formControlName="description" type="text"
+              class="input-custom section-modal__input"></textarea>
+  </div>
+
   <div class="section-modal__wrap-button">
-    <button class="button-custom button-custom_blue">Сохранить</button>
+    <button class="button-custom button-custom_blue" (click)="save()">Сохранить</button>
     <button class="button-custom button-custom_gray" (click)="dialogRef.close()">Отмена</button>
   </div>
 </section>

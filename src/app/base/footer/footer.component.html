@@ -9,6 +9,8 @@
         <a class="header_main-menu__link" routerLink="/sponsors" routerLinkActive="active">Спонсоры</a>
         <a class="header_main-menu__link" routerLink="/rating" routerLinkActive="active">Рейтинг</a>
         <a class="header_main-menu__link" routerLink="/questions" routerLinkActive="active">FAQ</a>
+        <a class="header_main-menu__link" *ngIf="isAdmin" routerLink="/users" routerLinkActive="active">Пользователи</a>
+        <a class="header_main-menu__link" *ngIf="isAdmin" routerLink="/departments" routerLinkActive="active">Факультеты</a>
       </nav>
       <div class="social">
         <div class="social__icon vk"></div>

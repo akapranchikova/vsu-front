@@ -31,8 +31,8 @@ export class SelectComponent implements OnInit, AfterContentChecked, ControlValu
   @Output()
   public readonly select: EventEmitter<any> = new EventEmitter<any>();
   @Input() items = [];
-  @Input() valueField = '';
-  @Input() labelField = '';
+  @Input() valueField = 'value';
+  @Input() labelField = 'label';
   @Input() placeholder = 'Выберите из списка';
   @Input() nullable = false;
   @Input() disabled = false;

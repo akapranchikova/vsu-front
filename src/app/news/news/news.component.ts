@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {FormMode} from '../../common/misc/helper';
 import {AddNewsModalComponent} from '../add-news-modal/add-news-modal.component';
 import {HttpService} from '../../services/http.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-news',
@@ -14,11 +15,15 @@ export class NewsComponent implements OnInit {
 
   FormMode = FormMode;
   setNews;
+  isAdmin: boolean;
+
   constructor(private dialog: MatDialog,
+              private authService: AuthService,
               private httpService: HttpService) { }
 
   ngOnInit(): void {
    this.getNews();
+   this.isAdmin = this.authService.isAdmin;
   }
 
   getNews() {

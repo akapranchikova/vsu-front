@@ -1,9 +1,5 @@
 .section-modal {
 
-  &__input {
-    margin-bottom: 15px;
-  }
-
   &__wrap-button {
     display: flex;
   }
@@ -16,4 +12,16 @@
     padding: 20px 30px 0;
     border-top: 1px solid #D9DADB;
   }
+}
+
+.wrap-name {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+textarea {
+  margin-bottom: 15px;
 }

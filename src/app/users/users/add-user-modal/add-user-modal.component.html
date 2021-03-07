@@ -1,4 +1,4 @@
-<section class="section-modal">
+<section class="section-modal" [formGroup]="form">
   <h2 class="section-modal__title" *ngIf="data.mode === FormMode.ADD">Добавить пользователя</h2>
   <h2 class="section-modal__title" *ngIf="data.mode === FormMode.EDIT">Редактировать пользователя</h2>
   <div class="section-modal__close" (click)="dialogRef.close()">
@@ -7,18 +7,18 @@
   <label class="label-input-custom" for="name">
     Пользователь
   </label>
-  <input placeholder="Пользователь" id="name" type="text" class="input-custom section-modal__input">
+  <input placeholder="Пользователь" formControlName="firstName" id="name" type="text" class="input-custom section-modal__input">
 
   <label class="label-input-custom" for="login">
     Username
   </label>
-  <input placeholder="Логин" id="login" type="text" class="input-custom section-modal__input">
+  <input placeholder="Логин" id="login" type="text" formControlName="username" class="input-custom section-modal__input">
   <label class="label-input-custom" for="password">
     Пароль
   </label>
-  <input placeholder="Пароль" id="password" type="password" class="input-custom section-modal__input">
+  <input placeholder="Пароль" id="password" type="password" formControlName="password" class="input-custom section-modal__input">
   <div class="section-modal__wrap-button">
-    <button class="button-custom button-custom_blue">Сохранить</button>
+    <button class="button-custom button-custom_blue" (click)="save()">Сохранить</button>
     <button class="button-custom button-custom_gray" (click)="dialogRef.close()">Отмена</button>
   </div>
 </section>

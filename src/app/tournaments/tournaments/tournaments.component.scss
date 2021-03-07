@@ -1,4 +1,4 @@
-.section-users {
+.section-questions {
   padding: 20px 0;
   max-width: var(--width-main);
   margin: 0 auto;
@@ -8,16 +8,87 @@
   }
 
   &__header {
-    margin: 0 25px 15px 25px;
+    margin: 0 0 10px 25px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
   }
+
   &__icon-add {
     cursor: pointer;
     font-size: 32px;
+    width: 32px;
+    height: 32px;
   }
 }
-.action__edit {
-  cursor: pointer;;
+
+.question-set {
+  padding: 0 25px;
+  background: #ffffff;
+  border-radius: 10px;
+
+}
+
+.question {
+  padding: 25px 0;
+  border-bottom: 1px solid #D9DADB;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__header {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__footer {
+    margin-top: 20px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 18px;
+    color: #262D33;
+    font-weight: bold;
+  }
+
+  &__info {
+    margin: 0;
+    font-size: 14px;
+    color: #4B5157;
+  }
+
+  &__date {
+    font-weight: normal;
+    font-size: 12px;
+    color: #939699;
+  }
+}
+
+.profile-card__edit-button {
+  margin-top: 24px;
+}
+
+.tour {
+
+  &__block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+
+    h4 {
+      margin-top: 0;
+    }
+  }
+
+  &__prize-block {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  &__buttons {
+    align-self: flex-end;
+    display: flex;
+  }
 }

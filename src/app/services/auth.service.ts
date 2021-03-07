@@ -23,6 +23,14 @@ export class AuthService {
     return this.token;
   }
 
+  get isAdmin() {
+    return this.user && this.user.role === 'ADMINISTRATOR';
+  }
+
+  get isSponsor() {
+    return this.user && this.user.role === 'SPONSOR';
+  }
+
   getUserObservable() {
     const userStr = localStorage.getItem('user');
     if (userStr) {

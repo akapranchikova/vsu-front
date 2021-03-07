@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {AddUserModalComponent} from './add-user-modal/add-user-modal.component';
 import {FormMode} from '../../common/misc/helper';
@@ -15,9 +15,14 @@ export class UsersComponent implements OnInit {
   displayedColumns = ['login', 'faculty', 'user', 'rating', 'actions'];
   FormMode = FormMode;
 
-  constructor(private dialog: MatDialog, private httpService: HttpService) { }
+  constructor(private dialog: MatDialog, private httpService: HttpService) {
+  }
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.httpService.get('/vsu/users').subscribe(res => {
       this.dataSource = res;
     });
@@ -29,6 +34,10 @@ export class UsersComponent implements OnInit {
       data: {
         mode,
         element
+      }
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.loadUsers();
       }
     });
   }
