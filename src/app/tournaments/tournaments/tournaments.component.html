@@ -1,6 +1,7 @@
 <section class="section-questions">
   <div class="section-questions__header">
     <h2 class="section-questions__title">Турниры</h2>
+
     <mat-icon class="section-questions__icon-add icon-clicked" *ngIf="isAdmin"
               matTooltip="Добавить вопрос" (click)="openUserModal(FormMode.ADD)">add</mat-icon>
   </div>
@@ -34,6 +35,8 @@
                     (click)="changeStatus(t, 'IN_PROGRESS')">Начать турнир</button>
             <button class="tour__button button-custom button-custom_blue" *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'IN_PROGRESS'"
                     (click)="changeStatus(t, 'CLOSED')">Закончить турнир</button>
+            <button class="tour__button button-custom button-custom_blue" routerLink="/tournaments/check/{{t.id}}"
+                    *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'CLOSED'">Оценить турнир</button>
           </div>
         </div>
       </div>

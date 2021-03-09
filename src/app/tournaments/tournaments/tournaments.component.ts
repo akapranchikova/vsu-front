@@ -36,7 +36,7 @@ export class TournamentsComponent implements OnInit {
 
   loadTour() {
     this.httpService.get('/vsu/tournaments').subscribe(res => {
-      this.tournaments = res.filter(t => t.status !== 'CREATED' || this.isAdmin || (this.isSponsor && t.sponsorId === this.user.id));
+      this.tournaments = res.filter(t => t.status === 'IN_PROGRESS' || this.isAdmin || (this.isSponsor && t.sponsorId === this.user.id));
       this.httpService.get('/vsu/tournament/participant').subscribe(tours => {
         this.myTours = tours;
         tours.forEach(tour => {

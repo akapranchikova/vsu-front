@@ -9,17 +9,22 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MaterialModule} from '../common/material.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { TournamentCheckComponent } from './tournament-check/tournament-check.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TournamentsComponent
+  },
+  {
+    path: 'check/:id',
+    component: TournamentCheckComponent
   }
 ];
 
 @NgModule({
-  declarations: [TournamentsComponent, AddTournModalComponent],
+  declarations: [TournamentsComponent, AddTournModalComponent, TournamentCheckComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -28,7 +33,8 @@ const routes: Routes = [
     MatTableModule,
     MatFormFieldModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   entryComponents: [
     AddTournModalComponent

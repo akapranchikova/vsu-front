@@ -57,9 +57,7 @@ export class ProfileComponent implements OnInit {
 
   sendTask(tour) {
     const data = {...tour};
-    const task = data.taskSend;
-    delete data.taskSend;
-    this.httpService.put(`/vsu/tournament/participant?tournamentId=${tour.tournamentId}&task=${task}`, data)
+    this.httpService.put(`/vsu/tournament/participant?tournamentId=${tour.tournamentId}&task=${tour.task}`, data)
       .subscribe(res => {
       this.loadTours();
     });
