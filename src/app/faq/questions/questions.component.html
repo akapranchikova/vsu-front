@@ -1,7 +1,7 @@
 <section class="section-questions">
   <div class="section-questions__header">
     <h2 class="section-questions__title">Ваши вопросы</h2>
-    <mat-icon class="section-questions__icon-add icon-clicked" *ngIf="isAdmin"
+    <mat-icon class="section-questions__icon-add icon-clicked"
               matTooltip="Добавить вопрос" (click)="openAddQuestionModal(FormMode.ADD)">add</mat-icon>
   </div>
   <div class="question-set">
@@ -14,12 +14,12 @@
         </h3>
 
         <div class="actions" *ngIf="isAdmin">
-          <mat-icon class="news__edit icon-clicked" (click)="openAddQuestionModal(FormMode.EDIT)">edit</mat-icon>
-          <mat-icon class="news__delete icon-clicked">delete</mat-icon>
+          <mat-icon class="news__edit icon-clicked" (click)="openAddQuestionModal(FormMode.EDIT, f)">edit</mat-icon>
+          <mat-icon class="news__delete icon-clicked" (click)="deleteQuestion(f.id)">delete</mat-icon>
         </div>
       </header>
       <p class="question__info">
-        {{f.answer}}</p>
+        {{f.answer?.description}}</p>
     </article>
 
   </div>

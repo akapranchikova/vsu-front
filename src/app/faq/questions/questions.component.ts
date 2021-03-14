@@ -16,6 +16,7 @@ export class QuestionsComponent implements OnInit {
   FormMode = FormMode;
   setQuestions;
   isAdmin: boolean;
+  user;
 
   constructor(private dialog: MatDialog,
               private authService: AuthService,
@@ -24,16 +25,20 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin;
+    this.authService.getUserObservable().subscribe(res => {
+      this.user = res;
+    });
     this.loadQuestions();
   }
 
   loadQuestions() {
-    this.httpService.get('/vsu/questions').subscribe(res => {
+    this.httpService.get('/vsu/questions', {role: this.user.role}).subscribe(res => {
       this.setQuestions = res;
     });
   }
 
   openAddQuestionModal(mode: FormMode, element?) {
+    console.log(element)
     this.dialog.open(AddQuestionModalComponent, {
       width: '500px',
       data: {
@@ -44,6 +49,12 @@ export class QuestionsComponent implements OnInit {
       if (res) {
         this.loadQuestions();
       }
+    });
+  }
+
+  deleteQuestion(id) {
+    this.httpService.delete('/vsu/question', {id}).subscribe(res => {
+      this.loadQuestions();
     });
   }
 
