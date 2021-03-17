@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormMode} from '../../../common/misc/helper';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {HttpService} from '../../../services/http.service';
 import * as moment from 'moment';
 import {AuthService} from '../../../services/auth.service';
@@ -27,7 +27,7 @@ export class AddTournModalComponent implements OnInit {
       label: 'Python'
     },
   ];
-
+  FormArray = FormArray;
   FormMode = FormMode;
   form: FormGroup;
   setSponsors;
@@ -37,7 +37,8 @@ export class AddTournModalComponent implements OnInit {
               private httpService: HttpService,
               private authService: AuthService,
               private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data) { }
+              @Inject(MAT_DIALOG_DATA) public data) {
+  }
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin;
@@ -49,21 +50,30 @@ export class AddTournModalComponent implements OnInit {
     if (this.data.mode === FormMode.ADD) {
       this.form = this.fb.group({
         name: '',
-        label: 'JAVA',
         task: '',
         sponsorId: 1,
         startDate: new Date(),
         endDate: new Date(),
+        technologies: this.fb.array([
+          this.fb.group({
+            key: null,
+            percent: 100
+          })
+        ]),
         prize: this.fb.group({
           name: '',
           description: '',
         })
       });
     } else {
-      this.form = this.fb.group({...this.data.element,
-        prize: this.fb.group(this.data.element.prize ? {...this.data.element.prize} : {   name: '',
+      this.form = this.fb.group({
+        ...this.data.element,
+        prize: this.fb.group(this.data.element.prize ? {...this.data.element.prize} : {
+          name: '',
           description: '',
-          user: null})});
+          user: null
+        })
+      });
     }
   }
 
@@ -71,10 +81,41 @@ export class AddTournModalComponent implements OnInit {
     const formData = this.form.getRawValue();
     formData.startDate = moment(formData.startDate).format('yyyy-MM-DD');
     formData.endDate = moment(formData.endDate).format('yyyy-MM-DD');
+    let percentDiff = 0;
+    formData.technologies = formData.technologies.reverse().map((tech, i) => {
+      percentDiff += formData.technologies[i - 1] ? formData.technologies[i - 1].percent : 0;
+      return {key: {technology: tech.key}, percent: tech.percent - percentDiff};
+    });
     if (this.data.mode === FormMode.EDIT) {
       this.httpService.put('/vsu/tournament', formData).subscribe(res => this.dialogRef.close(true));
     } else {
       this.httpService.post('/vsu/tournament', formData).subscribe(res => this.dialogRef.close(true));
+    }
+  }
+
+  addTech() {
+    const value = (this.form.get('technologies') as FormArray).at((this.form.get('technologies') as FormArray).controls.length - 1).value.percent;
+    (this.form.get('technologies') as FormArray).push(this.fb.group({
+      key: null,
+      percent: value > 25 ? value - 25 : 0
+    }));
+  }
+
+  deleteTech(index) {
+    (this.form.get('technologies') as FormArray).removeAt(index);
+  }
+
+  changeRange(i) {
+    const technologies = this.form.getRawValue().technologies;
+    const value = (this.form.get('technologies') as FormArray).at(i).get('percent').value;
+    if (i === 0) {
+      (this.form.get('technologies') as FormArray).at(0).get('percent').setValue(100);
+    } else {
+      if (technologies[i - 1] && value >= technologies[i - 1].percent) {
+        (this.form.get('technologies') as FormArray).at(i).get('percent').setValue(technologies[i - 1].percent - 1);
+      } else if (technologies[i + 1] && value <= technologies[i + 1].percent) {
+        (this.form.get('technologies') as FormArray).at(i).get('percent').setValue(technologies[i + 1].percent + 1);
+      }
     }
   }
 }

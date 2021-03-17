@@ -25,3 +25,96 @@
 textarea {
   margin-bottom: 15px;
 }
+
+
+.range-slider {
+  position: relative;
+  width: 200px;
+  height: 35px;
+  text-align: center;
+}
+
+.range-slider input {
+  pointer-events: none;
+  position: absolute;
+  //overflow: hidden;
+  left: 0;
+  top: 15px;
+  width: 200px;
+  outline: none;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.range-slider input::-webkit-slider-thumb {
+  pointer-events: all;
+  position: relative;
+  z-index: 1;
+  outline: 0;
+}
+
+.range-slider input::-moz-range-thumb {
+  pointer-events: all;
+  position: relative;
+  z-index: 10;
+  -moz-appearance: none;
+  width: 9px;
+  color: #13bba4;
+  background: #13bba4;
+
+}
+
+.range-slider input::-moz-range-track {
+  position: relative;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 1);
+  border: 0;
+}
+.range-slider input:last-of-type::-moz-range-track {
+  -moz-appearance: none;
+  background: none transparent;
+  border: 0;
+}
+.range-slider input[type=range]::-moz-focus-outer {
+  border: 0;
+}
+
+.range-label-2 {
+#thumb {
+  &::before {
+    content: "sdfdfs";
+    display: block;
+    position: absolute;
+    top: -10px;
+  }
+}
+
+}
+
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #43e5f7;
+}
+input[type="range"]::-moz-range-track {
+  background-color: #9a905d;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #43e5f7;
+}
+input[type="range"]::-ms-fill-upper {
+  background-color: #9a905d;
+}
+
+.select-language {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 24px;
+  grid-column-gap: 20px;
+}
+
+.add-language {
+  display: flex;
+  align-items: center;
+}

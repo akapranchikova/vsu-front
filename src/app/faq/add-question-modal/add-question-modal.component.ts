@@ -39,7 +39,8 @@ export class AddQuestionModalComponent implements OnInit {
     } else {
       this.form = this.fb.group({
         ...this.data.element,
-        answer: this.fb.group(this.data.element.answer ? {...this.data.element.answer} : {description: ''})});
+        answer: this.fb.group(this.data.element.answer ? {...this.data.element.answer, id: this.data.element.id} :
+          {id: this.data.element.id, description: ''})});
     }
   }
 
