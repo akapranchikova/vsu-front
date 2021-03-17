@@ -94,7 +94,8 @@ export class AddTournModalComponent implements OnInit {
   }
 
   addTech() {
-    const value = (this.form.get('technologies') as FormArray).at((this.form.get('technologies') as FormArray).controls.length - 1).value.percent;
+    const value = (this.form.get('technologies') as FormArray)
+      .at((this.form.get('technologies') as FormArray).controls.length - 1).value.percent;
     (this.form.get('technologies') as FormArray).push(this.fb.group({
       key: null,
       percent: value > 25 ? value - 25 : 0
