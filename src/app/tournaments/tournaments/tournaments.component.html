@@ -2,7 +2,7 @@
   <div class="section-questions__header">
     <h2 class="section-questions__title">Турниры</h2>
 
-    <mat-icon class="section-questions__icon-add icon-clicked" *ngIf="isAdmin"
+    <mat-icon class="section-questions__icon-add icon-clicked" *ngIf="isAdmin || isSponsor"
               matTooltip="Добавить вопрос" (click)="openUserModal(FormMode.ADD)">add</mat-icon>
   </div>
   <div class="question-set">
