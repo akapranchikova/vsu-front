@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   loadUser() {
     this.authService.updateUserInfo().subscribe(res => {
       this.user = res;
+      // @ts-ignore
       this.image = res.picture;
     });
   }

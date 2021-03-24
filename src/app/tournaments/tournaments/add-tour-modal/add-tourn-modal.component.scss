@@ -29,7 +29,7 @@ textarea {
 
 .range-slider {
   position: relative;
-  width: 200px;
+  width: 100%;
   height: 35px;
   text-align: center;
 }
@@ -37,10 +37,9 @@ textarea {
 .range-slider input {
   pointer-events: none;
   position: absolute;
-  //overflow: hidden;
   left: 0;
   top: 15px;
-  width: 200px;
+  width: 100%;
   outline: none;
   height: 18px;
   margin: 0;
@@ -109,6 +108,7 @@ input[type="range"]::-ms-fill-upper {
 
 .select-language {
   display: grid;
+  margin-top: 20px;
   align-items: center;
   grid-template-columns: 1fr 24px;
   grid-column-gap: 20px;
@@ -117,4 +117,14 @@ input[type="range"]::-ms-fill-upper {
 .add-language {
   display: flex;
   align-items: center;
+}
+
+.input-name {
+  position: absolute;
+  color: #262D33;
+  font-weight: bold;
+  top: 0;
+  span {
+    color: #4592FF;
+  }
 }

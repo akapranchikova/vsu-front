@@ -119,4 +119,18 @@ export class AddTournModalComponent implements OnInit {
       }
     }
   }
+
+  getTech(i, end: boolean) {
+    return this.form.get('technologies')['controls'][end ? this.form.get('technologies')['controls'].length - 1 - i : i];
+  }
+
+  getLeft(i) {
+    const prevPercent = (this.getTech(i - 1, true) ? this.getTech(i - 1, true)?.value?.percent : 0);
+    return ((this.getTech(i, true)?.value?.percent - prevPercent) / 2 + prevPercent);
+  }
+
+  getPercent(i) {
+    const prevPercent = (this.getTech(i - 1, true) ? this.getTech(i - 1, true)?.value?.percent : 0);
+    return ((this.getTech(i, true)?.value?.percent - prevPercent));
+  }
 }

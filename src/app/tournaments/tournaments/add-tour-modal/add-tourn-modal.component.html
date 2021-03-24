@@ -17,9 +17,8 @@
 
       </div>
     </div>
-    <div class="wrap-name">
+<!--    <div class="wrap-name">-->
 
-      <div>
         <label class="label-input-custom add-language" for="name">
           Язык программирования
           <mat-icon class="section-questions__icon-add icon-clicked"
@@ -28,26 +27,26 @@
         </label>
 
         <section class="range-slider" formArrayName="technologies">
-          <ng-container *ngFor="let inp of form.get('technologies')['controls']; let i = index" [formGroup]="form.get('technologies')['controls'][form.get('technologies')['controls'].length - 1 - i]">
+          <div class="wrap-input"
+               *ngFor="let inp of form.get('technologies')['controls']; let i = index" [formGroup]="form.get('technologies')['controls'][form.get('technologies')['controls'].length - 1 - i]">
             <input class="range-label-3"
+                   title="{{getTech(i, true)?.value?.key}}"
                    formControlName="percent"
+                   id="input-range-{{form.get('technologies')['controls'].length - 1 - i}}"
                    (input)="changeRange(form.get('technologies')['controls'].length - 1 - i)"
                    min="0" max="100" step="1" type="range">
-          </ng-container>
+            <div class="input-name"
+                 [ngStyle]="{left: getLeft(i) + '%'}"
+            >{{getTech(i, true)?.value?.key}} <span>{{getPercent(i)}}%</span></div>
+          </div>
         </section>
-      </div>
-      <div class="select select-language" [formGroup]="form.get('technologies')['controls'][0]">
-        <app-select [items]="tourLabels" formControlName="key"></app-select>
-      </div>
-
-    </div>
 
     <div class="wrap-name"  formArrayName="technologies">
 
       <ng-container *ngFor="let control of form.get('technologies')['controls']; let i = index" >
-        <div class="select select-language" *ngIf="i > 0" [formGroupName]="i">
+        <div class="select select-language" [formGroupName]="i">
           <app-select formControlName="key" [items]="tourLabels"></app-select>
-          <mat-icon class="section-questions__icon-add icon-clicked" (click)="deleteTech(i)">delete</mat-icon>
+          <mat-icon class="section-questions__icon-add icon-clicked" *ngIf="i!==0" (click)="deleteTech(i)">delete</mat-icon>
         </div>
       </ng-container>
 
