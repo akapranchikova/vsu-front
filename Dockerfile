@@ -42,13 +42,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
-FROM nginx:1.19.0-alpine
-ENV NGINX_HOST=""
-COPY configure.sh /
+FROM nginx:1.17.1-alpine
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
-#CMD ./configure.sh
-RUN ["chmod", "+x", "./configure.sh"]
+
 
 #FROM node:10
 #
