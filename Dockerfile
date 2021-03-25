@@ -42,8 +42,12 @@ RUN npm install
 COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
-COPY config/nginx.conf /etc/nginx/nginx.conf
+FROM nginx:1.19-alpine
+ENV TODO_API localhost:8080
+COPY config/templates /etc/nginx/templates/
+#COPY --from=build /app/build /usr/share/nginx/html
+
+#COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
 
 
