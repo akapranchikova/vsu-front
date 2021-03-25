@@ -13,10 +13,10 @@
     Username
   </label>
   <input placeholder="Логин" id="login" type="text" formControlName="username" class="input-custom section-modal__input">
-  <label class="label-input-custom" for="password">
+  <label class="label-input-custom" for="password" *ngIf="data.mode === FormMode.ADD">
     Пароль
   </label>
-  <input placeholder="Пароль" id="password" type="password" formControlName="password" class="input-custom section-modal__input">
+  <input placeholder="Пароль" id="password" *ngIf="data.mode === FormMode.ADD" type="password" formControlName="password" class="input-custom section-modal__input">
   <div class="section-modal__wrap-button">
     <button class="button-custom button-custom_blue" (click)="save()">Сохранить</button>
     <button class="button-custom button-custom_gray" (click)="dialogRef.close()">Отмена</button>

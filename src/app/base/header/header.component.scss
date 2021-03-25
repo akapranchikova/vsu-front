@@ -3,6 +3,8 @@
   height: var(--height-header, 70px);
   .logo {
     cursor: pointer;
+    display: flex;
+    align-items: center;
     font-size: 20px;
     user-select: none;
     outline: none;

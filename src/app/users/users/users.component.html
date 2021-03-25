@@ -27,7 +27,7 @@
     <ng-container matColumnDef="actions2">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef></mat-header-cell>
       <mat-cell class="table-custom__cell" *matCellDef="let element;">
-        <mat-icon class="action__edit" (click)="openUserModal(FormMode.EDIT)">edit</mat-icon>
+        <mat-icon class="action__edit" (click)="openUserModal(FormMode.EDIT, element)">edit</mat-icon>
         <mat-icon class="action__edit" (click)="deleteUser(element.id)">delete</mat-icon>
       </mat-cell>
     </ng-container>

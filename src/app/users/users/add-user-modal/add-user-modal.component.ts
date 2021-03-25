@@ -30,14 +30,20 @@ export class AddUserModalComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: InputData) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      firstName: '',
-      secondName: '',
-      username: '',
-      role: 'USER',
-      password: ''
 
-    });
+    if (this.data.mode === FormMode.ADD) {
+      this.form = this.fb.group({
+        firstName: '',
+        secondName: '',
+        username: '',
+        role: 'USER',
+        password: ''
+      });
+    } else {
+      this.form = this.fb.group({
+        ...this.data.element
+      });
+    }
   }
 
   save() {
