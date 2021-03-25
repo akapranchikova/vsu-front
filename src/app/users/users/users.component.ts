@@ -12,7 +12,7 @@ import {HttpService} from '../../services/http.service';
 export class UsersComponent implements OnInit {
 
   dataSource;
-  displayedColumns = ['login', 'faculty', 'user', 'rating', 'actions'];
+  displayedColumns = ['login', 'faculty', 'user', 'rating', 'actions2'];
   FormMode = FormMode;
 
   constructor(private dialog: MatDialog, private httpService: HttpService) {
@@ -25,6 +25,12 @@ export class UsersComponent implements OnInit {
   loadUsers() {
     this.httpService.get('/vsu/users').subscribe(res => {
       this.dataSource = res;
+    });
+  }
+
+  deleteUser(id) {
+    this.httpService.delete('/vsu/user', {id}).subscribe(res => {
+      this.loadUsers();
     });
   }
 
