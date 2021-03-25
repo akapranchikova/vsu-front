@@ -31,6 +31,7 @@ export class AddTournModalComponent implements OnInit {
   FormMode = FormMode;
   form: FormGroup;
   setSponsors;
+  user;
   isAdmin: boolean;
 
   constructor(public dialogRef: MatDialogRef<AddTournModalComponent>,
@@ -42,6 +43,7 @@ export class AddTournModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin;
+    this.authService.getUserObservable().subscribe(res => this.user = res);
     if (this.isAdmin) {
       this.httpService.get('/vsu/users', {role: 'SPONSOR'}).subscribe(res => {
         this.setSponsors = res;
@@ -51,7 +53,7 @@ export class AddTournModalComponent implements OnInit {
       this.form = this.fb.group({
         name: '',
         task: '',
-        sponsorId: 1,
+        sponsorId: this.user ? this.user.id : 0,
         startDate: new Date(),
         endDate: new Date(),
         technologies: this.fb.array([
@@ -86,6 +88,9 @@ export class AddTournModalComponent implements OnInit {
       percentDiff += formData.technologies[i - 1] ? formData.technologies[i - 1].percent : 0;
       return {key: {technology: tech.key}, percent: tech.percent - percentDiff};
     });
+    if (!formData.sponsorId) {
+      formData.sponsorId = this.user.id;
+    }
     if (this.data.mode === FormMode.EDIT) {
       this.httpService.put('/vsu/tournament', formData).subscribe(res => this.dialogRef.close(true));
     } else {
