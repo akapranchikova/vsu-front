@@ -47,8 +47,8 @@ ENV NGINX_HOST=""
 COPY configure.sh /
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
-CMD ./configure.sh
-
+#CMD ./configure.sh
+RUN ["chmod", "+x", "./configure.sh"]
 
 #FROM node:10
 #
