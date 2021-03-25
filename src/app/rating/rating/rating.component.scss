@@ -4,8 +4,15 @@
   margin: 0 auto;
 
   &__title {
-    margin: 0 0 10px 25px;
+    margin: 0;
   }
 }
-
+.header {
+  display: flex;
+  align-items: center;
+  margin: 0 0 10px 25px;
+  .selector {
+    margin-left: 15px;
+  }
+}
 

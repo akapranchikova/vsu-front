@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RatingComponent } from './rating/rating.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
+import {MaterialModule} from '../common/material.module';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -16,7 +18,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MatTableModule
+    MatTableModule,
+    MaterialModule,
+    FormsModule
   ]
 })
 export class RatingModule { }

@@ -1,0 +1,27 @@
+<div class="pagination">
+  <ng-container *ngIf="currentPage>2">
+    <div class="pagination__page__arrow" (click)="selectPage(currentPage-1)">
+      <i class="icon icon__chevron-down-black icon-left"></i>
+    </div>
+    <div class="pagination__page" (click)="selectPage(0)">{{1}}</div>
+    <div class="pagination__placeholder" *ngIf="currentPage>2"> ...
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let item of pagesLoop();let page=index">
+    <div class="pagination__page" *ngIf="showPage(page)"
+         [ngClass]="{'pagination__page--selected':currentPage===page}"
+         (click)="selectPage(page)"
+    >{{(page + 1)}}</div>
+  </ng-container>
+  <ng-container *ngIf="currentPage<pagesCount-2 && pagesCount > 3 && pagesCount !== 4">
+    <div class="pagination__placeholder"> ...
+    </div>
+    <div class="pagination__page" (click)="selectPage(pagesCount-1)">{{pagesCount}}</div>
+  </ng-container>
+
+  <ng-container *ngIf="currentPage<pagesCount-1 && pagesCount>4">
+    <div class="pagination__page__arrow" (click)="selectPage(currentPage+1)">
+      <i class="icon icon__chevron-down-black icon-right"></i>
+    </div>
+  </ng-container>
+</div>

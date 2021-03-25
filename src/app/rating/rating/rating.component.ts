@@ -8,14 +8,42 @@ import {HttpService} from '../../services/http.service';
 })
 export class RatingComponent implements OnInit {
 
-  dataSource;
+  rating;
+  page = 0;
   displayedColumns = ['login', 'faculty', 'user', 'rating'];
+  tourLabels = [
+    {
+      value: 'JAVA',
+      label: 'Java'
+    },
+    {
+      value: 'JS',
+      label: 'JS'
+    },
+    {
+      value: 'PYTHON',
+      label: 'Python'
+    },
+  ];
+  technology = 'JAVA';
 
   constructor(private httpService: HttpService) {
   }
 
   ngOnInit(): void {
-    this.httpService.get('/vsu/rating/all').subscribe(res => this.dataSource = res);
+    this.loadRating();
+  }
+
+  loadRating() {
+    this.httpService.get('/vsu/rating', {
+      technologyName: this.technology,
+      pageSize: 30,
+      pageNumber: this.page
+    }).subscribe(res => this.rating = res);
+  }
+
+  setPage(page) {
+    this.page = page;
   }
 
 }

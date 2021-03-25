@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { PaginationComponent } from './pagination/pagination.component';
 
 const materialModules = [
   MatDialogModule,
@@ -17,14 +18,15 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [SelectComponent],
+  declarations: [SelectComponent, PaginationComponent],
   imports: [
     ...materialModules,
     MatTooltipModule,
     CommonModule,
   ], exports: [
-    ...materialModules,
-    SelectComponent
-  ]
+        ...materialModules,
+        SelectComponent,
+        PaginationComponent
+    ]
 })
 export class MaterialModule { }

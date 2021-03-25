@@ -1,6 +1,9 @@
 <section class="section-rating">
-  <h2 class="section-rating__title">Рейтинг</h2>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 section-rating__table table-rating table-custom">
+  <div class="header">
+    <h2 class="section-rating__title">Рейтинг</h2>
+    <app-select class="selector" [items]="tourLabels" [(ngModel)]="technology" (ngModelChange)="loadRating()"></app-select>
+  </div>
+  <mat-table [dataSource]="rating.content" class="mat-elevation-z8 section-rating__table table-rating table-custom">
     <ng-container matColumnDef="login">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef> Username </mat-header-cell>
       <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.username}} </mat-cell>
@@ -24,4 +27,6 @@
     <mat-header-row class="table-custom__header" *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row class="table-custom__row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+<app-pagination [itemsCount]="rating.totalElements" [pageSize]="30" (changePage)="setPage($event)"></app-pagination>
 </section>
