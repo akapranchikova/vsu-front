@@ -44,8 +44,10 @@ RUN npm run build
 ### STAGE 2: Run ###
 FROM nginx:1.19.0-alpine
 ENV NGINX_HOST=""
+COPY configure.sh /
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
+CMD ./configure.sh
 
 
 #FROM node:10
