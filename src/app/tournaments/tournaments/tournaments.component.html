@@ -15,7 +15,7 @@
         </h3>
 
 
-        <div class="actions" *ngIf="isAdmin">
+        <div class="actions" *ngIf="isAdmin || (isSponsor && user.id === t.sponsorId)">
           <mat-icon class="news__edit icon-clicked" (click)="openUserModal(FormMode.EDIT, t)">edit</mat-icon>
           <mat-icon class="news__delete icon-clicked" (click)="delete(t.id)">delete</mat-icon>
         </div>

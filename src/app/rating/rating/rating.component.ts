@@ -44,6 +44,11 @@ export class RatingComponent implements OnInit {
 
   setPage(page) {
     this.page = page;
+    this.loadRating();
+  }
+
+  getRating(rating) {
+    return rating.map(r => `${r.key.technology}: ${r.rating}`).join(', ');
   }
 
 }

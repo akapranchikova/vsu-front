@@ -21,27 +21,19 @@
   </div>
 </section>
 
-<!--<section class="section-trophy">-->
-<!--  <h2 class="section-trophy__title">Награды</h2>-->
-<!--  <div class="trophy-set">-->
+<section class="section-trophy">
+  <h2 class="section-trophy__title">Рейтинг</h2>
+  <div class="trophy-set" [ngStyle]="{gridTemplateColumns: 'repeat(' + user.ratings.length + ', 1fr)'}">
+    <div class="trophy" *ngFor="let rating of user.ratings">
+      <div class="trophy__title">{{rating.key.technology}}</div>
+      <div class="trophy__title">{{rating.rating}}</div>
+    </div>
 <!--    <div class="trophy">-->
 <!--      <div class="trophy__image"><img class="profile-card__image" src="/assets/images/noImage.png" alt=""></div>-->
 <!--      <div class="trophy__title">Награда</div>-->
 <!--    </div>-->
-<!--    <div class="trophy">-->
-<!--      <div class="trophy__image"><img class="profile-card__image" src="/assets/images/noImage.png" alt=""></div>-->
-<!--      <div class="trophy__title">Награда</div>-->
-<!--    </div>-->
-<!--    <div class="trophy">-->
-<!--      <div class="trophy__image"><img class="profile-card__image" src="/assets/images/noImage.png" alt=""></div>-->
-<!--      <div class="trophy__title">Награда</div>-->
-<!--    </div>-->
-<!--    <div class="trophy">-->
-<!--      <div class="trophy__image"><img class="profile-card__image" src="/assets/images/noImage.png" alt=""></div>-->
-<!--      <div class="trophy__title">Награда</div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
+  </div>
+</section>
 <section class="section-profile" *ngIf="dataSource && dataSource.length">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8 section-rating__table table-rating table-custom">
     <ng-container matColumnDef="login">

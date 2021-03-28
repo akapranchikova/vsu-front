@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
 
   openUserModal(mode: FormMode, element?) {
     this.dialog.open(AddUserModalComponent, {
-      width: '400px',
+      width: mode === FormMode.ADD ? '400px' : '800px',
       data: {
         mode,
         element

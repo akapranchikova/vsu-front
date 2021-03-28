@@ -47,9 +47,15 @@ export class AddUserModalComponent implements OnInit {
   }
 
   save() {
-    this.httpService.post('/vsu/register', {...this.form.getRawValue()}).subscribe(res => {
-      this.dialogRef.close(true);
-    });
+    if (this.data.mode === FormMode.ADD) {
+      this.httpService.post('/vsu/register', {...this.form.getRawValue()}).subscribe(res => {
+        this.dialogRef.close(true);
+      });
+    } else {
+      this.httpService.put('/vsu/user', {...this.form.getRawValue()}).subscribe(res => {
+        this.dialogRef.close(true);
+      });
+    }
   }
 
 }

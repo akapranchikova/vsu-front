@@ -16,7 +16,7 @@
     <div class="user-info" *ngIf="user">
       <div class="user" routerLink="/profile">
         <mat-icon class="icon">person</mat-icon>
-        <span>{{user.firstName}} {{user.role}}</span>
+        <span>{{user.firstName}} {{user.secondName}}</span>
       </div>
       <div class="user" (click)="logout()">
         <span>Выйти</span>

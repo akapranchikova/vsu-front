@@ -12,7 +12,7 @@
         <mat-icon class="news__delete icon-clicked" *ngIf="isAdmin" >delete</mat-icon>
       </div>
       <header>
-        <img class="sponsor__logo" src="assets/images/DA.png" alt="лого">
+        <img class="sponsor__logo" *ngIf="sponsor.picture" src="{{sponsor.picture}}" alt="лого">
         <div class="sponsor__title">{{sponsor.firsName}}</div>
       </header>
       <p class="sponsor__info">{{sponsor.description}}</p>

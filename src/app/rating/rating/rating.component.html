@@ -21,7 +21,7 @@
 
     <ng-container matColumnDef="rating">
       <mat-header-cell class="table-custom__header-cell" *matHeaderCellDef> Рейтинг </mat-header-cell>
-      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{element.rating}} </mat-cell>
+      <mat-cell class="table-custom__cell" *matCellDef="let element"> {{getRating(element.ratings)}} </mat-cell>
     </ng-container>
 
     <mat-header-row class="table-custom__header" *matHeaderRowDef="displayedColumns"></mat-header-row>
