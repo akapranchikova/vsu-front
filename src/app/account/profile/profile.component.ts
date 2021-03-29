@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpService} from '../../services/http.service';
@@ -11,12 +11,14 @@ import {element} from 'protractor';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild('img') imgEl;
   user;
   isUpdate: boolean;
   dataSource;
   form: FormGroup;
   image;
   displayedColumns = ['login', 'faculty', 'user', 'rating', 'actions'];
+  margin;
 
   constructor(private authService: AuthService,
               private httpService: HttpService,
@@ -32,6 +34,10 @@ export class ProfileComponent implements OnInit {
 
     this.loadTours();
 
+  }
+
+  loadImg() {
+    this.margin = -this.imgEl.nativeElement.getBoundingClientRect().height / 2;
   }
 
   loadUser() {

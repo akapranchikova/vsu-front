@@ -2,7 +2,7 @@
   <h2 class="section-profile__title">Профиль</h2>
   <div class="profile-card">
     <div class="wrap-image">
-      <img class="profile-card__image" [src]="image ? image : '/assets/images/noImage.png'" alt="">
+      <img class="profile-card__image" #img (load)="loadImg()" [ngStyle]="{marginTop: margin + 'px'}" [src]="image ? image : '/assets/images/noImage.png'" alt="">
       <label>
         <div class="hover">
           обновить фотографию

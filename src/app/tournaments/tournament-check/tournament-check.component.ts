@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-tournament-check',
@@ -14,6 +14,7 @@ export class TournamentCheckComponent implements OnInit {
   displayedColumns = ['login', 'faculty', 'user', 'actions'];
   // FormMode = FormMode;
   constructor(private httpService: HttpService,
+              private router: Router,
               private route: ActivatedRoute) {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
@@ -30,7 +31,7 @@ export class TournamentCheckComponent implements OnInit {
 
   saveGrade() {
     this.httpService.put(`/vsu/tournament/participant/grade?tournamentId=${this.id}`, this.dataSource).subscribe(res => {
-      this.loadGrades();
+      this.router.navigate(['/tournaments']);
     });
   }
 
