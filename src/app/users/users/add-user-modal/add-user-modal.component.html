@@ -24,6 +24,20 @@
                class="input-custom section-modal__input">
       </div>
     </div>
+    <div class="row3">
+      <div>
+        <label class="label-input-custom">День рождения</label>
+        <div class="datepicker">
+          <input [matDatepicker]="picker" class="input-custom" formControlName="birthday"/>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+      <div></div>
+      <div>
+      </div>
+    </div>
     <div class="row2">
       <div>
         <label class="label-input-custom">

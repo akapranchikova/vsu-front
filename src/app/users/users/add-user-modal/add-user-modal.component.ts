@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormMode} from '../../../common/misc/helper';
 import {FormBuilder} from '@angular/forms';
 import {HttpService} from '../../../services/http.service';
+import * as moment from 'moment';
 
 interface InputData {
   mode: FormMode;
@@ -41,18 +42,21 @@ export class AddUserModalComponent implements OnInit {
       });
     } else {
       this.form = this.fb.group({
-        ...this.data.element
+        ...this.data.element,
+        ratings: this.fb.array([...this.data.element.ratings])
       });
     }
   }
 
   save() {
+    const formData = {...this.form.getRawValue()};
+    formData.birthday = moment(formData.birthday).format('yyyy-MM-DD');
     if (this.data.mode === FormMode.ADD) {
-      this.httpService.post('/vsu/register', {...this.form.getRawValue()}).subscribe(res => {
+      this.httpService.post('/vsu/register', formData).subscribe(res => {
         this.dialogRef.close(true);
       });
     } else {
-      this.httpService.put('/vsu/user', {...this.form.getRawValue()}).subscribe(res => {
+      this.httpService.put('/vsu/user', formData).subscribe(res => {
         this.dialogRef.close(true);
       });
     }
