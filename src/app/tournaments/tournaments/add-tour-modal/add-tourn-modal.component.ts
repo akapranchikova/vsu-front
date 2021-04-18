@@ -70,11 +70,18 @@ export class AddTournModalComponent implements OnInit {
     } else {
       this.form = this.fb.group({
         ...this.data.element,
+        technologies: this.fb.array([]),
         prize: this.fb.group(this.data.element.prize ? {...this.data.element.prize} : {
           name: '',
           description: '',
-          user: null
+          user: null,
         })
+      });
+      this.data.element.technologies.forEach(tech => {
+        (this.form.get('technologies') as FormArray).push(this.fb.group({
+          key: tech.key.technology,
+          percent: tech.percent
+        }));
       });
     }
   }

@@ -1,6 +1,6 @@
 
 upstream proxy_upstream {
-  server ${TODO_API};
+  server ${api};
 }
 server {
     listen 80;
