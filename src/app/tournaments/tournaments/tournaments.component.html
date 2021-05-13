@@ -28,15 +28,22 @@
         <div class="tour__prize-block">
           <h4>Приз {{t.prize?.name}}</h4>
           <div>{{t.prize?.description}}</div>
-          <div class="buttons tour__buttons">
-            <button class="tour__button button-custom button-custom_blue" *ngIf="!isSponsor && !isAdmin && !t.myTour" (click)="goToTour(t.id)">Участвовать</button>
-            <button class="tour__button button-custom button-custom_blue" *ngIf="!isSponsor && !isAdmin && t.myTour" (click)="deleteUserFromTour(t.id)">Выйти из турнира</button>
-            <button class="tour__button button-custom button-custom_blue" *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'CREATED'"
-                    (click)="changeStatus(t, 'IN_PROGRESS')">Начать турнир</button>
-            <button class="tour__button button-custom button-custom_blue" *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'IN_PROGRESS'"
-                    (click)="changeStatus(t, 'CLOSED')">Закончить турнир</button>
-            <button class="tour__button button-custom button-custom_blue" routerLink="/tournaments/check/{{t.id}}"
-                    *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'CLOSED'">Оценить турнир</button>
+          <div class="tour__prize-block__footer">
+            <div>
+              <ng-container *ngFor="let tech of t.technologies">
+                {{tech.key.technology}} - {{tech.percent}}%
+              </ng-container>
+            </div>
+            <div class="buttons tour__buttons">
+              <button class="tour__button button-custom button-custom_blue" *ngIf="!isSponsor && !isAdmin && !t.myTour" (click)="goToTour(t.id)">Участвовать</button>
+              <button class="tour__button button-custom button-custom_blue" *ngIf="!isSponsor && !isAdmin && t.myTour" (click)="deleteUserFromTour(t.id)">Выйти из турнира</button>
+              <button class="tour__button button-custom button-custom_blue" *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'CREATED'"
+                      (click)="changeStatus(t, 'IN_PROGRESS')">Начать турнир</button>
+              <button class="tour__button button-custom button-custom_blue" *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'IN_PROGRESS'"
+                      (click)="changeStatus(t, 'CLOSED')">Закончить турнир</button>
+              <button class="tour__button button-custom button-custom_blue" routerLink="/tournaments/check/{{t.id}}"
+                      *ngIf="((isSponsor && t.sponsorId === user.id) || isAdmin) && t.status === 'CLOSED'">Оценить турнир</button>
+            </div>
           </div>
         </div>
       </div>
