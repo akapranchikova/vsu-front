@@ -48,7 +48,7 @@ export class RatingComponent implements OnInit {
   }
 
   getRating(rating) {
-    return rating.map(r => `${r.key.technology}: ${r.rating}`).join(', ');
+    return rating.map(r => `${r.rating}`).join(', ');
   }
 
 }
